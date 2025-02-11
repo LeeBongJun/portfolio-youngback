@@ -7,6 +7,6 @@ interface AchievementRepository : JpaRepository<Achievement, Long> {
 
 
     // select from achievement where is_active = :isActive
-    fun fundAllByIsActive(isActive : Boolean): List<Achievement>
+    fun findAllByIsActive(isActive : Boolean): List<Achievement>
 
 }
