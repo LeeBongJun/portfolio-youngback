@@ -15,7 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 class ExperienceRepositoryTest(
     @Autowired val experienceRepository: ExperienceRepository
 ) {
-    val DATA_SIZE = 2
+    val DATA_SIZE = 10
     // 더미 객체 생성
     private fun createExperience(n: Int): Experience {
         val experience = Experience(
@@ -75,5 +75,11 @@ class ExperienceRepositoryTest(
             println("experience.details.size: ${experience.details.size}")
         }
         println("----- findAllByIsActive 테스트 종료 -----")
+    }
+
+    @Test
+    fun test() {
+        val findById = experienceRepository.findById(1)
+        println(findById.isPresent)
     }
 }
