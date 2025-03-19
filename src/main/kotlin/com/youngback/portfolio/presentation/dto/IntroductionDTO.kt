@@ -1,4 +1,7 @@
 package com.youngback.portfolio.presentation.dto
 
-class IntroductionDTO {
+data class IntroductionDTO(
+    val content: String
+) {
+
 }

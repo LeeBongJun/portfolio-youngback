@@ -1,4 +1,7 @@
 package com.youngback.portfolio.presentation.dto
 
-class LinkDTO {
+data class LinkDTO(
+    val name: String,
+    val content: String
+) {
 }
