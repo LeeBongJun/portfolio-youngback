@@ -1,6 +1,10 @@
 package com.youngback.portfolio.admin.context.project.service
 
+import com.youngback.portfolio.admin.context.project.form.ProjectSkillForm
 import com.youngback.portfolio.admin.data.TableDTO
+import com.youngback.portfolio.admin.exception.AdminBadRequestException
+import com.youngback.portfolio.admin.exception.AdminInternalServerErrorException
+import com.youngback.portfolio.domain.entity.ProjectSkill
 import com.youngback.portfolio.domain.repository.ProjectRepository
 import com.youngback.portfolio.domain.repository.ProjectSkillRepository
 import com.youngback.portfolio.domain.repository.SkillRepository
@@ -42,4 +46,36 @@ class AdminProjectSkillService(
         val skills = skillRepository.findAll()
         return skills.map { "${it.id} (${it.name})" }.toList()
     }
+
+    @Transactional
+    fun save(form : ProjectSkillForm) {
+
+        // 이미 매핑된 Project - Skill 여부 검증
+        val projectId = parseId(form.project)
+        val skillId = parseId(form.skill)
+        projectSkillRepository.findByProjectIdAndSkillId(projectId, skillId).ifPresent { throw AdminBadRequestException("이미 매핑된 데이터입니다.") }
+
+        val project = projectRepository.findById(projectId).orElseThrow { throw AdminBadRequestException("ID ${projectId}에 해당하는 데이터를 찾을 수 없습니다.") }
+        val skill = skillRepository.findById(skillId).orElseThrow { throw AdminBadRequestException("ID ${skillId}에 해당하는 데이터를 찾을 수 없습니다.") }
+        val projectSkill = ProjectSkill(project = project, skill = skill)
+        // 연관관계 세팅
+        project.skills.add(projectSkill)
+
+    }
+
+    private fun parseId(line: String): Long {
+        try {
+            val endIndex = line.indexOf(" ") - 1
+            val id = line.slice(0..endIndex).toLong()
+            return id
+        } catch (e: Exception) {
+            throw AdminInternalServerErrorException("ID 추출 중 오류가 발생했습니다.")
+        }
+    }
+
+    fun deleteProjectSkill(id: Long) {
+        projectSkillRepository.deleteById(id)
+    }
+
+
 }
