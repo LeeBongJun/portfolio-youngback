@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 import java.time.LocalDate
 
 @Component
-@Profile(value = ["docker"])
+@Profile(value = ["default"])
 class DataInitializer(
     private val achievementRepository: AchievementRepository,
     private val introductionRepository: IntroductionRepository,
@@ -40,8 +40,8 @@ class DataInitializer(
         // introduction 초기화
         val introductions = mutableListOf<Introduction>(
             Introduction(content = "주도적으로 문제를 찾고, 해결하는 이봉준입니다.", isActive = true),
-            Introduction(content = "기술을 위한 기술이 아닌, 비즈니스 문제를 풀기 위한 기수를 추구합니다." , isActive = true),
-            Introduction(content = "기존 소스를 리팩토링하여 더 졸은 구조롤 개선하는 작업을 좋아합니다." , isActive = true)
+            Introduction(content = "기술을 위한 기술이 아닌, 비즈니스 문제를 풀기 위한 기술을 추구합니다." , isActive = true),
+            Introduction(content = "기존 소스를 리팩토링하여 더 좋은 구조롤 개선하는 작업을 좋아합니다." , isActive = true)
         )
         introductionRepository.saveAll(introductions)
 
@@ -56,8 +56,8 @@ class DataInitializer(
             title = "부산폴리텍대학교",
             description = "컴퓨터공학 전공",
             startYear = 2022,
-            startMonth = 2024,
-            endYear = 2022,
+            startMonth = 3,
+            endYear = 2024,
             endMonth = 2,
             isActive = true,
         )
@@ -85,11 +85,13 @@ class DataInitializer(
 
         // skill 초기화
         val java = Skill(name = "Java", type = SkillType.LANGUAGE.name, isActive = true)
+        val C = Skill(name = "C#", type = SkillType.LANGUAGE.name, isActive = true)
         val kotlin = Skill(name = "Kotlin", type = SkillType.LANGUAGE.name, isActive = true)
-        val restjs = Skill(name = "Python", type = SkillType.LANGUAGE.name, isActive = true)
+        val nodejs = Skill(name = "NodeJS", type = SkillType.LANGUAGE.name, isActive = true)
         val spring = Skill(name = "Spring", type = SkillType.FRAMEWORK.name, isActive = true)
+        val restjs = Skill(name = "RestJS", type = SkillType.FRAMEWORK.name, isActive = true)
         val mysql = Skill(name = "MySQL", type = SkillType.DATABASE.name, isActive = true)
-        val oracle = Skill(name = "Redis", type = SkillType.DATABASE.name, isActive = true)
-        skillRepository.saveAll(mutableListOf(java, kotlin, restjs, spring, mysql, oracle))
+        val oracle = Skill(name = "Oracle", type = SkillType.DATABASE.name, isActive = true)
+        skillRepository.saveAll(mutableListOf(java, C, kotlin, nodejs, restjs,  spring, mysql, oracle))
     }
 }

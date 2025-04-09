@@ -3,9 +3,8 @@ package com.bongjun.portfolio.admin.context.achievement.form
 import com.bongjun.portfolio.domain.entity.Achievement
 import jakarta.validation.constraints.NotBlank
 import java.time.LocalDate
-import java.time.LocalDateTime
 
-data class AchievementForm (
+data class AchievementForm(
 
     @field:NotBlank(message = "필수값입니다.")
     val title: String,
@@ -17,10 +16,9 @@ data class AchievementForm (
     val host: String,
 
     @field:NotBlank(message = "필수값입니다.")
-    val achievement : String,
+    val achievedDate: String,
 
-    @field:NotBlank(message = "필수값입니다.")
-    val isActive: Boolean,
+    val isActive: Boolean
 
 ) {
     fun toEntity(): Achievement {
@@ -28,7 +26,7 @@ data class AchievementForm (
             title = this.title,
             description = this.description,
             host = this.host,
-            achievedDate =  LocalDate.parse(this.achievement),
+            achievedDate = LocalDate.parse(this.achievedDate),
             isActive = this.isActive
         )
     }
@@ -36,6 +34,7 @@ data class AchievementForm (
     fun toEntity(id: Long): Achievement {
         val achievement = this.toEntity()
         achievement.id = id
+
         return achievement
     }
 }
