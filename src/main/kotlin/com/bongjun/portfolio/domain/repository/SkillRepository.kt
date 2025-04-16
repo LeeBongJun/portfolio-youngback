@@ -3,7 +3,7 @@ package com.bongjun.portfolio.domain.repository
 import com.bongjun.portfolio.domain.constant.SkillType
 import com.bongjun.portfolio.domain.entity.Skill
 import org.springframework.data.jpa.repository.JpaRepository
-import java.util.Optional
+import java.util.*
 
 interface SkillRepository : JpaRepository<Skill, Long> {
 

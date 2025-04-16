@@ -1,26 +1,26 @@
 package com.bongjun.portfolio.domain.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 
 @Entity
-class ExperienceDetail(content : String , isActive : Boolean) : BaseEntity() {
+class ExperienceDetail(content: String, isActive: Boolean) : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "experiencedetail_id")
-    var id : Long? = null
+    @Column(name = "experience_detail_id")
+    var id: Long? = null
 
-    var content : String = content
+    var content: String = content
 
-    var isActive : Boolean = isActive
+    var isActive: Boolean = isActive
 
-    fun update(content : String , isActive : Boolean){
+    fun update(content: String, isActive: Boolean) {
         this.content = content
-        this.isActive  = isActive
+        this.isActive = isActive
     }
-
-    @OneToMany(targetEntity = ExperienceDetail::class, fetch = FetchType.LAZY , cascade = [CascadeType.ALL])
-    @JoinColumn(name = "experience_id")
-    var details : MutableList<ExperienceDetail> = mutableListOf()
 
 }

@@ -1,10 +1,25 @@
 package com.bongjun.portfolio.domain.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.OneToMany
 
 @Entity
-class Project(name: String, description: String, startYear: Int, startMonth: Int, endYear: Int?,
-               endMonth: Int?, isActive: Boolean) : BaseEntity() {
+class Project(
+    name: String,
+    description: String,
+    startYear: Int,
+    startMonth: Int,
+    endYear: Int?,
+    endMonth: Int?,
+    isActive: Boolean
+) : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +51,11 @@ class Project(name: String, description: String, startYear: Int, startMonth: Int
         if (endYear == null || endMonth == null) {
             return "Present"
         }
+
         return "${endYear}.${endMonth}"
     }
 
-    fun update(name: String, description: String, startYear: Int, startMonth: Int, endYear:
-    Int?, endMonth: Int?, isActive: Boolean) {
+    fun update(name: String, description: String, startYear: Int, startMonth: Int, endYear: Int?, endMonth: Int?, isActive: Boolean) {
         this.name = name
         this.description = description
         this.startYear = startYear

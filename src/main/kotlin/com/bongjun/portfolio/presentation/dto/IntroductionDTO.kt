@@ -8,6 +8,4 @@ data class IntroductionDTO(
     constructor(introduction: Introduction) : this(
         content = introduction.content
     )
-
-
 }

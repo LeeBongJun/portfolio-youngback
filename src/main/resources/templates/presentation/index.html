@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="~{/presentation/layouts/layout-main :: layout(~{::#content})}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{presentation/layouts/layout-main :: layout(~{::#content})}">
 <main class="flex-shrink-0" id="content">
         <!-- Header-->
         <header class="py-5">
@@ -21,10 +22,10 @@
                         <!-- Header profile picture-->
                         <div class="d-flex justify-content-center mt-5 mt-xxl-0">
                             <div class="profile bg-gradient-primary-to-secondary">
-                                <div th:replace="~{/presentation/fragments/fragment-dots :: dots-1}"></div>
-                                <div th:replace="~{/presentation/fragments/fragment-dots :: dots-2}"></div>
-                                <div th:replace="~{/presentation/fragments/fragment-dots :: dots-3}"></div>
-                                <div th:replace="~{/presentation/fragments/fragment-dots :: dots-4}"></div>
+                                <div th:replace="~{presentation/fragments/fragment-dots :: dots-1}"></div>
+                                <div th:replace="~{presentation/fragments/fragment-dots :: dots-2}"></div>
+                                <div th:replace="~{presentation/fragments/fragment-dots :: dots-3}"></div>
+                                <div th:replace="~{presentation/fragments/fragment-dots :: dots-4}"></div>
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
         </section>
     </main>
 
-    <div th:replace="~{/presentation/fragments/fragment-footer :: footer}"></div>
+    <div th:replace="~{presentation/fragments/fragment-footer :: footer}"></div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
